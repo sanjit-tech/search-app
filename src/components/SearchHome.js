@@ -8,15 +8,19 @@ class SearchHome extends Component{
         this.state = {
             loading: false,
             search_text: '',
+            p_id: '',
+            dataList: []
         }
 
     }
     handleChange = (e) => {
-        const { value } = e.target
+        const { value, p_id } = e.target
         if (e.key === 'Enter') {
             let url = `/search-result`
-            url += `/${value}/`
-            window.location.href = `${url}`
+            this.props.history.push({
+                pathname: `${url}/`,
+                state: { post_id: p_id }
+            })
         }
         if (value.length > 3) {
             this.setState({search_text: value}, ()=>{
@@ -35,14 +39,15 @@ class SearchHome extends Component{
         axios.get(url)
             .then((response)=>{
                 const {data} = response
-                this.setState({dataList: data})
+                const {hits} = data
+                this.setState({dataList: hits, p_id: hits[0].objectID})
             })
             .catch(errors => console.log('Not found'))
     }
 
     render(){
-        const {search_text} = this.state
-        console.log('search_text', search_text)
+        const {search_text, p_id} = this.state
+        console.log('search_text', p_id)
         return(
             <div className="container p-5">
                 <div className="row form-box">
@@ -56,13 +61,11 @@ class SearchHome extends Component{
                                 />
                                 <button className="btn btn-primary"
                                         onClick={() => {
-                                            let e = {
-                                                key: 'Enter',
-                                                target: {
-                                                    value: search_text
-                                                }
-                                            }
-                                            this.handleChange(e)
+                                            debugger
+                                            this.props.history.push({
+                                                pathname: `${`/search-result`}/`,
+                                                state: {post_id: p_id}
+                                            })
                                         }}
                                 >Search</button>
                             </div>

@@ -5,9 +5,15 @@ import axios from 'axios'
 class SearchResult extends Component{
     constructor(props){
         super(props)
+        const { history } = this.props
+
+        const { location } = history
+        const { post_id } = location.state || {}
+        console.log('post_id', post_id)
         this.state = {
             loading: false,
             searched_data: [],
+            post_id
         }
 
     }
@@ -16,8 +22,9 @@ class SearchResult extends Component{
     }
 
     getSearchDataResult =()=> {
+        const {post_id} = this.state
         this.setState({ loading: true })
-        let url = `${`http://hn.algolia.com/api/v1/items/12701272`}`
+        let url = `${`http://hn.algolia.com/api/v1/items/${post_id}`}`
         axios.get(url)
             .then((response)=>{
                 const {data} = response
