@@ -2,9 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import React, {Fragment} from "react";
 import {Route, Switch } from 'react-router-dom';
-import SignUp from "./components/SingUp";
+import SearchHome from "./components/SearchHome";
 import {Header} from "./components/Header";
-import SignIn from "./components/SignIn";
+import SearchResult from "./components/SearchResult";
 import Thanks from "./components/thanks";
 
 function App() {
@@ -12,9 +12,8 @@ function App() {
      <Fragment>
         <Header/>
         <Switch>
-            <Route path='/' exact component={SignUp}/>
-            <Route path='/sign-in' component={SignIn}/>
-            <Route path='/thank-you' component={Thanks}/>
+            <Route path='/' exact component={SearchHome}/>
+            <Route path='/search-result' component={SearchResult}/>
         </Switch>
      </Fragment>
   );

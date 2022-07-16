@@ -73,7 +73,7 @@ class SignUp extends Component{
             <div className="row form-box">
             <div className="col-xl-6">
                 <div className="shadow p-3 mb-5 bg-body rounded">
-                     <h2 className="text-center">Sign up</h2>
+                     <h2 className="text-center">z</h2>
 
                         <div className="mb-3">
                             <label className="form-label">Full Name</label>
