@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react";
 import './../App.css';
 import axios from 'axios'
+import $ from 'jquery'
 
 class SearchHome extends Component{
     constructor(props){
@@ -14,7 +15,8 @@ class SearchHome extends Component{
 
     }
     handleChange = (e) => {
-        const { value, p_id } = e.target
+        const {p_id} = this.state
+        const { value } = e.target
         if (e.key === 'Enter') {
             let url = `/search-result`
             this.props.history.push({
@@ -53,15 +55,15 @@ class SearchHome extends Component{
                 <div className="row form-box">
                     <div className="col-xl-6">
                         <div className="shadow p-3 mb-5 bg-body rounded">
-                            <h2 className="text-center">Search Home</h2>
+                            <h2 className="text-center">Search Your Keyword</h2>
                             <div className="input-group mb-3 mt-4">
                                 <input type="text" className="form-control" placeholder="Type keyword here..."
                                        aria-label="Recipient's username" aria-describedby="basic-addon2"
                                 onChange={(e)=> {this.handleChange(e)}}
+                                       onKeyDown={(e)=> {this.handleChange(e)}}
                                 />
                                 <button className="btn btn-primary"
                                         onClick={() => {
-                                            debugger
                                             this.props.history.push({
                                                 pathname: `${`/search-result`}/`,
                                                 state: {post_id: p_id}
