@@ -81,7 +81,7 @@ class SearchResult extends Component{
                                 </div>
                             </Fragment>
                             :
-                            <h5 className="text-center mp-5">No Comment</h5>
+                           !loading && <h5 className="text-center mp-5">No Comment</h5>
                         }
 
                     </div>
